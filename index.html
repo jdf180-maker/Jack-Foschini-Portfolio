@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jack Foschini | Supply Chain Management</title>
+  <meta name="description" content="Portfolio of Jack Foschini, Supply Chain Management student at Rutgers Business School.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+  <style>
+    /* Layout: single column, sticky nav, three required sections (statement, skills, projects) plus education and contact. */
+    :root {
+      --bg: #F7F7F5; --surface: #FFFFFF; --ink: #17202E; --muted: #5B6575; --line: #E2E4E8;
+      --accent: #B3122E; --accent-soft: #FBEAEC; --chip: #EEF1F5;
+      --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --body: "Manrope", "Segoe UI", system-ui, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0F141C; --surface: #161D28; --ink: #E8ECF2; --muted: #9AA4B4; --line: #263042;
+              --accent: #FF5A72; --accent-soft: #2A1820; --chip: #1E2735; color-scheme: dark; }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 var(--body); }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent);
+          backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+    .logo { font: 800 18px var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+    nav ul a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14.5px; }
+    nav ul a:hover { color: var(--ink); }
+    @media (max-width: 600px) { nav ul { gap: 14px; } nav ul li.hide-sm { display: none; } }
+
+    header.hero { padding-block: 72px 56px; }
+    .eyebrow { font: 700 12.5px var(--body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+    h1 { font: 800 clamp(40px, 7vw, 72px)/1.02 var(--display); letter-spacing: -0.02em; margin: 14px 0 22px; }
+    .statement { font: 500 clamp(19px, 2.6vw, 25px)/1.45 var(--display); max-width: 30ch; margin: 0; text-wrap: balance; }
+    .statement strong { color: var(--accent); font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px; font-weight: 700;
+           font-size: 15px; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); }
+    .btn.primary { background: var(--ink); color: var(--bg); }
+    .btn:hover { transform: translateY(-1px); }
+    .facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line);
+             color: var(--muted); font-size: 14.5px; }
+    .facts b { color: var(--ink); font-weight: 700; }
+
+    section { padding-block: 56px; border-top: 1px solid var(--line); }
+    h2 { font: 800 30px/1.1 var(--display); letter-spacing: -0.01em; margin: 6px 0 28px; }
+
+    .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; }
+    .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+    .skill-group h3 { font: 700 16px var(--display); margin: 0 0 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+    .chips li { background: var(--chip); border-radius: 999px; padding: 5px 12px; font-size: 14px; font-weight: 600; }
+    .skill-group.featured { background: var(--accent-soft); border-color: transparent; }
+    .skill-group.featured .chips li { background: var(--surface); }
+
+    .projects { display: flex; flex-direction: column; gap: 18px; }
+    .project { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px;
+               display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .project-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+    .project h3 { font: 800 21px/1.2 var(--display); margin: 0; }
+    .meta { color: var(--muted); font-size: 14px; font-weight: 600; }
+    .project p { margin: 0; color: var(--ink); }
+    .project ul { margin: 0; padding-left: 1.1em; }
+    .project ul li + li { margin-top: 4px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 4px 0 0; }
+    .tags li { font-size: 12.5px; font-weight: 700; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
+    .project-link { font-weight: 700; font-size: 14.5px; text-decoration: none; }
+    .project-link:hover { text-decoration: underline; }
+    .stat { font: 800 15px var(--display); color: var(--accent); }
+
+    .edu { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px;
+           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+    .edu h3 { font: 800 20px var(--display); margin: 0 0 4px; }
+    .edu p { margin: 0; color: var(--muted); }
+
+    .contact { display: flex; flex-wrap: wrap; gap: 12px; }
+    footer { padding-block: 28px 40px; color: var(--muted); font-size: 13.5px; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">Jack Foschini<span>.</span></a>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-sm"><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero wrap">
+    <span class="eyebrow">Supply Chain Management · Rutgers Business School</span>
+    <h1>Jack Foschini</h1>
+    <p class="statement">I'm a <strong>Rutgers supply chain management student</strong> who has run my own service business and managed high-volume operations, and I'm ready to bring that hands-on experience to a supply chain team.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" href="https://www.linkedin.com/in/jack-foschini" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="facts">
+      <span><b>B.S. Supply Chain Management</b>, expected May 2028</span>
+      <span><b>3.55 GPA</b> · Dean's List Fall 2025 &amp; Spring 2026</span>
+      <span><b>Bergen County, NJ</b></span>
+    </div>
+  </header>
+
+  <section id="skills">
+    <div class="wrap">
+      <span class="eyebrow">Skills</span>
+      <h2>What I bring</h2>
+      <div class="skill-groups">
+        <div class="skill-group featured">
+          <h3>Supply Chain &amp; Operations</h3>
+          <ul class="chips">
+            <li>Inventory Management</li><li>KPI Tracking</li><li>Operations</li><li>Data Analysis</li><li>Scheduling &amp; Pricing</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Technical</h3>
+          <ul class="chips">
+            <li>SQL (MySQL)</li><li>Database Design</li><li>HTML &amp; CSS</li><li>Git &amp; GitHub</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Professional</h3>
+          <ul class="chips">
+            <li>Customer Service</li><li>Team Collaboration</li><li>Communication</li><li>Time Management</li><li>Attention to Detail</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <span class="eyebrow">Projects</span>
+      <h2>Things I've built and run</h2>
+      <div class="projects">
+
+        <article class="project">
+          <div class="project-top"><h3>Food Truck Business Simulation</h3><span class="meta">Rutgers coursework · Sep – Dec 2024</span></div>
+          <p>Ran a simulated food truck business against classmates in a competitive market, making weekly decisions on pricing, inventory, and operations.</p>
+          <ul>
+            <li><span class="stat">$400,000+</span> in simulated revenue</li>
+            <li>Tracked 5+ KPIs, including sales, inventory levels, pricing, and customer feedback, to adjust strategy each round</li>
+          </ul>
+          <ul class="tags"><li>KPI Tracking</li><li>Inventory Planning</li><li>Pricing Strategy</li></ul>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><h3>Lawn Maintenance Business</h3><span class="meta">Owner / Operator · Apr 2025 – Aug 2026</span></div>
+          <p>Started and ran a residential lawn care business in Bergen County, NJ, handling scheduling, pricing, and client relationships myself.</p>
+          <ul>
+            <li><span class="stat">$12,000+</span> in revenue over a four-month period through consistent client retention</li>
+            <li>Served 5–10 recurring clients, completing 3–6 properties per day during peak weeks</li>
+          </ul>
+          <ul class="tags"><li>Operations</li><li>Scheduling</li><li>Customer Service</li></ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <span class="eyebrow">Education</span>
+      <h2>Where I study</h2>
+      <div class="edu">
+        <div>
+          <h3>Rutgers Business School</h3>
+          <p>Rutgers, The State University of New Jersey · New Brunswick, NJ</p>
+          <p>Bachelor of Science in Supply Chain Management</p>
+          <p>Member, Rutgers University Supply Chain Association (RUSCA)</p>
+        </div>
+        <div>
+          <p><b style="color:var(--ink)">Expected May 2028</b></p>
+          <p>GPA 3.55 · Dean's List</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's connect</h2>
+      <p style="margin:0 0 20px; color:var(--muted); max-width:60ch">I'm looking for supply chain and operations internships. The best ways to reach me:</p>
+      <div class="contact">
+        <a class="btn primary" href="mailto:jackfoschini@gmail.com">jackfoschini@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/jack-foschini" target="_blank" rel="noopener">linkedin.com/in/jack-foschini</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Jack Foschini · Built with HTML &amp; CSS, hosted on GitHub Pages</div>
+</footer>
+
+</body>
+</html>
